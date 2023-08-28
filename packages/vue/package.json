@@ -1,0 +1,36 @@
+{
+  "name": "@xtheme/vue",
+  "version": "0.0.0",
+  "description": "Vue 3.x components for xtheme",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yugasun/xtheme.git",
+    "directory": "packages/vue"
+  },
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "run-p type-check build-only",
+    "preview": "vite preview",
+    "test:unit": "vitest",
+    "test-only": "vitest --run",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit --composite false",
+    "prepublishOnly": "run-p test-only build-only"
+  },
+  "peerDependencies": {
+    "vue": "^3"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@xtheme/core": "^0.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}
