@@ -1,17 +1,23 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "example/**/*", "example/**/*.vue", "example/**/*.json", "example/**/*.md"],
-  "exclude": ["example/**/__tests__/*"],
-  "compilerOptions": {
-    "composite": true,
-    "lib": ["ESNext", "DOM"],
-    "esModuleInterop": true,
-    "ignoreDeprecations": "5.0",
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./example/*"]
+    "extends": "@vue/tsconfig/tsconfig.web.json",
+    "include": [
+        "env.d.ts",
+        "example/**/*",
+        "example/**/*.vue",
+        "example/**/*.json",
+        "example/**/*.md"
+    ],
+    "exclude": ["example/**/__tests__/*"],
+    "compilerOptions": {
+        "composite": true,
+        "lib": ["ESNext", "DOM"],
+        "esModuleInterop": true,
+        "ignoreDeprecations": "5.0",
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./example/*"]
+        }
     }
-  }
 }

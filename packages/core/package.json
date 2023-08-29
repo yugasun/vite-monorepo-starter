@@ -1,32 +1,32 @@
 {
-  "name": "@xtheme/core",
-  "version": "0.0.0",
-  "description": "XTheme Core Library",
-  "module": "dist/index.mjs",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yugasun/xtheme.git",
-    "directory": "packages/core"
-  },
-  "scripts": {
-    "dev": "vite build --watch",
-    "build": "run-p type-check build-only",
-    "preview": "vite preview",
-    "test:unit": "vitest",
-    "test-only": "vitest --run",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --noEmit --composite false",
-    "prepublishOnly": "run-p test-only build-only"
-  },
-  "peerDependencies": {},
-  "devDependencies": {},
-  "dependencies": {},
-  "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  }
+    "name": "@vms/core",
+    "version": "0.0.0",
+    "description": "Core package for vite monorepo starter",
+    "module": "dist/index.mjs",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yugasun/vite-monorepo-starter.git",
+        "directory": "packages/core"
+    },
+    "scripts": {
+        "dev": "vite build --watch",
+        "build": "run-p type-check build-only",
+        "preview": "vite preview",
+        "test:unit": "vitest",
+        "test-only": "vitest --run",
+        "build-only": "vite build",
+        "type-check": "vue-tsc --noEmit --composite false",
+        "prepublishOnly": "run-p test-only build-only"
+    },
+    "peerDependencies": {},
+    "devDependencies": {},
+    "dependencies": {},
+    "files": [
+        "dist"
+    ],
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/"
+    }
 }

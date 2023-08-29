@@ -1,14 +1,15 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "packages/**/*", "packages/**/*.vue"],
-  "exclude": ["packages/**/__tests__/*"],
-  "compilerOptions": {
-    "composite": true,
-    "esModuleInterop": true,
-    "ignoreDeprecations": "5.0",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./packages/*"]
+    "extends": "@vue/tsconfig/tsconfig.web.json",
+    "include": ["vite.config.ts", "env.d.ts", "packages/**/*", "packages/**/*.vue"],
+    "exclude": ["packages/**/__tests__/*"],
+    "compilerOptions": {
+        "composite": true,
+        "esModuleInterop": true,
+        "ignoreDeprecations": "5.0",
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./packages/*"]
+        },
+        "types": ["vite/client"]
     }
-  }
 }
