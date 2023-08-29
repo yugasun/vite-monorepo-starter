@@ -30,20 +30,20 @@ export const VmsComponent = defineComponent({
         return {
             num,
             incrementN,
-        }
+        };
     },
 
     render() {
         return (
-            <div class="vite-library-starter">
+            <div class="vite-monorepo-starter">
                 <h3>{this.msg}</h3>
                 <hr />
-                <p>
-                    Result: { this.num }
-                </p>
-                <button type="button" onClick={this.incrementN}>incrementN</button>
+                <p>Result: {this.num}</p>
+                <button type="button" onClick={this.incrementN}>
+                    incrementN
+                </button>
                 {this.$slots.default?.()}
             </div>
-        )
-    }
+        );
+    },
 });
