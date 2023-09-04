@@ -1,82 +1,82 @@
 name: Publish
 on:
-  pull_request:
-    types: [closed]
-    branches:
-      - main
+    pull_request:
+        types: [closed]
+        branches:
+            - main
 
 jobs:
-  publish:
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
+    publish:
+        if: github.event.pull_request.merged == true
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        # fetch all tags and commits so that lerna can version appropriately
-        with:
-          fetch-depth: 0
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              # fetch all tags and commits so that lerna can version appropriately
+              with:
+                  fetch-depth: 0
 
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
+            - name: Install Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  registry-url: https://registry.npmjs.org/
 
-      # ------- pnpm install with cache
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 8
-          run_install: false
+            # ------- pnpm install with cache
+            - uses: pnpm/action-setup@v2
+              name: Install pnpm
+              id: pnpm-install
+              with:
+                  version: 8
+                  run_install: false
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+            - name: Get pnpm store directory
+              id: pnpm-cache
+              shell: bash
+              run: |
+                  echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+            - uses: actions/cache@v3
+              name: Setup pnpm cache
+              with:
+                  path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+                  key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+                  restore-keys: |
+                      ${{ runner.os }}-pnpm-store-
 
-      - name: Install dependencies
-        run: pnpm install
+            - name: Install dependencies
+              run: pnpm install
 
-      # ------- git login
-      - name: Git Identity
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
-        env:
-          GITHUB_TOKEN: ${{ secrets.CYRILLUCE_GITHUB_TOKEN }}
-      # ------- lerna version
-      # 将`npx`替换为`pnpm exec`
-      # Use `pnpm exec` instead of `npx`
-      # Reference issue: https://github.com/mysticatea/npm-run-all/issues/209
-      - name: Version
-        run: |
-          pnpm exec lerna version --no-commit-hooks --yes
-      - name: Build
-        run: |
-          pnpm exec lerna run build
-      # ------- lerna publish to npm
-      - name: Switch to private npm registry
-        uses: actions/setup-node@v3
-        with:
-          registry-url: https://registry.npmjs.org/
-          always-auth: true
-      - name: Build
-        run: |
-          pnpm run build
-      - name: Publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          pnpm exec lerna publish from-git --yes
+            # ------- git login
+            - name: Git Identity
+              run: |
+                  git config --global user.name 'github-actions[bot]'
+                  git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+                  git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
+              env:
+                  GITHUB_TOKEN: ${{ secrets.CYRILLUCE_GITHUB_TOKEN }}
+            # ------- lerna version
+            # 将`npx`替换为`pnpm exec`
+            # Use `pnpm exec` instead of `npx`
+            # Reference issue: https://github.com/mysticatea/npm-run-all/issues/209
+            - name: Version
+              run: |
+                  pnpm exec lerna version --no-commit-hooks --yes
+            - name: Build
+              run: |
+                  pnpm exec lerna run build
+            # ------- lerna publish to npm
+            - name: Switch to private npm registry
+              uses: actions/setup-node@v3
+              with:
+                  registry-url: https://registry.npmjs.org/
+                  always-auth: true
+            - name: Build
+              run: |
+                  pnpm run build
+            - name: Publish
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+              run: |
+                  pnpm exec lerna publish from-git --yes

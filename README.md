@@ -9,6 +9,7 @@ Vite monorepo starter template.
 -   [x] Lerna (with nx-style workspaces)
 -   [x] Typescript
 -   [x] ESLint
+-   [x] Postcss
 -   [x] Prettier
 
 ## Usage

@@ -7,3 +7,8 @@ import { VmsComponent } from '@vms/vue';
         <p>Slot Content</p>
     </VmsComponent>
 </template>
+<style lang="less" scoped>
+p {
+    color: red;
+}
+</style>

@@ -23,7 +23,7 @@ export default defineConfig({
         target: 'esnext',
         cssCodeSplit: false,
         minify: false,
-        emptyOutDir: true,
+        emptyOutDir: false,
         lib: {
             entry: 'src/index.ts',
 

@@ -10,9 +10,7 @@ export default defineConfig({
         vue({
             include: [/\.vue$/, /\.tsx$/],
         }),
-        vueJsx({
-            include: [/\.vue$/, /\.tsx$/],
-        }),
+        vueJsx(),
     ],
     resolve: {
         alias: {
@@ -22,6 +20,13 @@ export default defineConfig({
     esbuild: {
         jsx: 'transform',
         jsxFactory: 'h',
-        jsxFragment: 'Fragment'
-    }
+        jsxFragment: 'Fragment',
+    },
+    css: {
+        preprocessorOptions: {
+            less: {
+                javascriptEnabled: true,
+            },
+        },
+    },
 });

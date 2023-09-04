@@ -1,9 +1,9 @@
 /**
  * @vitest-environment happy-dom
  */
-import { h } from 'vue'
+import { h } from 'vue';
 import { describe, expect, it } from 'vitest';
-import { mount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils';
 
 import { VmsComponent } from '../VmsComponent';
 import { nextTick } from 'vue';
@@ -15,7 +15,7 @@ describe('vue test', () => {
 
     it('should render with default props', () => {
         const wrapper = mount(VmsComponent, {
-            props: {}
+            props: {},
         });
         expect(wrapper.html()).toContain('Hello World!');
     });

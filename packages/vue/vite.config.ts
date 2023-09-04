@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import Dts from 'vite-plugin-dts';
 import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import vueJsx from '@vitejs/plugin-vue-jsx';
 
 // import tsconfigPaths from 'vite-tsconfig-paths'
 import { fileURLToPath } from 'node:url';
@@ -26,7 +26,7 @@ export default defineConfig({
         target: 'esnext',
         cssCodeSplit: false,
         minify: false,
-        emptyOutDir: true,
+        emptyOutDir: false,
         lib: {
             entry: 'src/index.ts',
 
